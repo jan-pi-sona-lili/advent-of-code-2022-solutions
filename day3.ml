@@ -11,6 +11,6 @@ data
 
 (* part 2 *)
 data
-|> (let rec group_three (a::b::c::d) = [a;b;c]::(match d with []->[] | _ -> group_three d) in group_three)
-|> List.(map (fun [a;b;c] -> find (String.contains c) (filter (String.contains a) (of_seq @@ String.to_seq b))))
+|> (let rec group_three (a::b::c::d) = (a,b,c)::(match d with []->[] | _ -> group_three d) in group_three)
+|> List.(map (fun (a,b,c) -> find (String.contains c) (filter (String.contains a) (of_seq @@ String.to_seq b))))
 |> print_and_sum_and_map_priority;;
